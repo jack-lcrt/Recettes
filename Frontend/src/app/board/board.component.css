@@ -1,0 +1,17 @@
+form {
+    width: 700px;
+    margin: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+form div {
+    display: flex;
+    justify-content: flex-start;
+}
+form input {
+    width: 200px; 
+}
+form button {
+    height: 40px;
+}

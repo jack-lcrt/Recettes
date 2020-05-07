@@ -1,1 +1,38 @@
-<p>details works!</p>
+<div class="container  mt-2 mb-2 p-2 rounded bg-dark">
+  <h1 class="text-center text-white">{{ data.title }}</h1>
+  <div class="container">
+    <img
+      *ngIf="data.url"
+      [src]="data.url"
+      alt="photo"
+      class="image border-lg border-dark rounded m-3 mx-auto d-block text-center"
+    />
+    <div class="container border border-dark rounded m-2 p-2 mx-auto bg-white">
+      <strong>Time: </strong><span> {{ data.time }}</span
+      ><br />
+      <strong>Ingredients :</strong>
+      <ul>
+        <li *ngFor="let ing of data.ingredients">{{ ing }}</li>
+      </ul>
+    </div>
+    <div class="container border rounded border-dark m-2 p-2 mx-auto bg-white">
+      <strong>Descritpion :</strong> <br />
+      {{ data.description }}
+    </div>
+  </div>
+</div>
+<div *ngIf="!data.recommend">
+  <button class="btn btn-info m-2" [routerLink]="'/home/modify/' + id">
+    Modify the recipe
+  </button>
+  <button class="btn btn-danger m-2" (click)="delete(id)">
+    Delete the recipe
+  </button>
+</div>
+<button
+  *ngIf="data.recommend"
+  class="btn btn-success m-2"
+  (click)="add()"
+>
+  Add to my recipes !
+</button>

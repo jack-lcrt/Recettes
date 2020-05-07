@@ -1,7 +1,44 @@
-<div class="container">
+<div class="m-5">
+<h2 class="text-center">Most popular recipes:</h2>
+
+<div id="carousel" class="carousel slide block" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li *ngFor="let recipe of recipesRecommend; let i=index" data-target="#carousel" data-slide-to="i" 
+      [class]="isActive(recipe)"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div *ngFor="let recipe of recipesRecommend; let i=index" 
+      [class]="'carousel-item text-center '+isActive(recipe)">
+        <img [src]="recipe.url" alt="i" [routerLink]="recipe._id" class="d-block w-100 link">
+        <div class="carousel-caption d-none d-md-block legend">
+          <h5>{{recipe.title}}</h5>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+<h2>Your recipes:</h2>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div>
+    <label  for="search">Search for a recipe:</label>
+    <input type="text" id="search" class="form-control ml-2 mr-2" name="search" ngModel>
+  </div>
+  <button class="btn btn-primary" type="submit">Search recipe</button>
+</form>
+<div class="container block">
     <ul class="list-group">
-        <li *ngFor="let recipe of recipes" class="list-group-item">
+        <li *ngFor="let recipe of recipeList" class="list-group-item" [id]="recipe._id">
             {{recipe.title}}
+            <a class="primary" [routerLink]="recipe._id">See more...</a>
         </li>
     </ul>
+</div>
 </div>

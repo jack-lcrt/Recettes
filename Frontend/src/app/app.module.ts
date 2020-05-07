@@ -1,24 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ViewComponent } from './view/view.component';
 import { BoardComponent } from './board/board.component';
 import { NewComponent } from './new/new.component';
 import { DetailsComponent } from './details/details.component';
 import { ModifyComponent } from './modify/modify.component';
 import { RouterModule, Routes } from '@angular/router';
+import { RecipeService } from './recipe.service';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: 'home', component: BoardComponent },
   {path: 'new', component: NewComponent },
-  {path: 'modify', component: ModifyComponent},
-  {path: '**', component: AppComponent}
+  {path: 'home/:id', component: DetailsComponent},
+  {path: 'home/modify/:id', component: ModifyComponent},
+  {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 @NgModule({
   declarations: [
     AppComponent,
-    ViewComponent,
     BoardComponent,
     NewComponent,
     DetailsComponent,
@@ -26,10 +28,15 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [
+    RecipeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

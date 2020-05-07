@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+
+.image{
+    width: 400px;
+    height: 300px;
+    margin: auto;
+}
+
+.link{
+    cursor: pointer;
+    width: 500px;
+    height: 300px;
+}
+
+.block{
+    max-width: 500px;
+    max-height: 300px;
+    margin: 10px auto;
+}
+
+.legend{
+    color: grey;
+}
+
+
+section {
+    width: 600px;
+    margin: 50px auto;
+    padding: 10px
+}
+.description{
+    width: 600px
+}
+.detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
